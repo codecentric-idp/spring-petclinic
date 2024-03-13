@@ -14,12 +14,17 @@ service:
 containers:
   frontend:
     image: . # Set by command line
+    resources:
+      limits:
+        memory: "512Mi"
+      requests:
+        memory: "512Mi"
     variables:
       spring_profiles_active: mysql
       MYSQL_URL: jdbc:mysql://${resources.db.host}:${resources.db.port}/${resources.db.name}
       MYSQL_USER: ${resources.db.username}
       MYSQL_PASS: ${resources.db.password}
-      JAVA_OPTS: -XX:MaxRAMPercentage=80.0
+      JAVA_TOOL_OPTIONS: -XX:MaxRAMPercentage=80.0
 
 # Define the resources that this service needs
 resources:
