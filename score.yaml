@@ -19,6 +19,7 @@ containers:
       MYSQL_URL: jdbc:mysql://${resources.db.host}:${resources.db.port}/${resources.db.name}
       MYSQL_USER: ${resources.db.username}
       MYSQL_PASS: ${resources.db.password}
+      JAVA_OPTS: -XX:MaxRAMPercentage=80.0
 
 # Define the resources that this service needs
 resources:
