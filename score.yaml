@@ -13,7 +13,7 @@ service:
 # Define the containers that make up this service
 containers:
   frontend:
-    image: # Set by command line
+    image: . # Set by command line
     variables:
       spring_profiles_active: mysql
       MYSQL_URL: jdbc:mysql://${resources.db.host}:${resources.db.port}/${resources.db.name}
