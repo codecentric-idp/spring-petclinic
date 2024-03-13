@@ -1,0 +1,28 @@
+apiVersion: score.dev/v1b1
+
+metadata:
+  name: "petclinic"
+
+# Define the ports that this service exposes
+service:
+  ports:
+    www:
+      port: 81 # The port that the service will be exposed on
+      targetPort: 8080 # The port that the container will be listening on
+
+# Define the containers that make up this service
+containers:
+  frontend:
+    image: # Set by command line
+    variables:
+      spring_profiles_active: mysql
+      MYSQL_URL: jdbc:mysql://${resources.db.host}:${resources.db.port}/${resources.db.name}
+      MYSQL_USER: ${resources.db.username}
+      MYSQL_PASS: ${resources.db.password}
+
+# Define the resources that this service needs
+resources:
+  dns: # We need a DNS record to point to the service
+    type: dns
+  db: # We need a database to store data
+    type: mysql
